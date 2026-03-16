@@ -15,18 +15,23 @@ public class Cliente extends Pessoa {
         return numeroConta;
     }
 
-    public void adicionarConta(Conta conta) {
+    public ArrayList<Conta> getContas() {
+        return contas;
+    }
+
+    public boolean adicionarConta(Conta conta) {
         for (Conta contaExistente : contas) {
             if (conta instanceof ContaCorrente && contaExistente instanceof ContaCorrente) {
                 System.out.println("Aviso: Você ja possui uma conta corrente ativa.");
-                return;
+                return false;
             } else if (conta instanceof ContaPoupanca && contaExistente instanceof ContaPoupanca) {
                 System.out.println("Aviso: Você ja possui uma conta poupanca ativa");
-                return;
+                return false;
             }
         }
 
         this.contas.add(conta);
         System.out.println("Conta vinculada com sucesso à pasta do cliente " + this.getNome());
+        return true;
     }
 }
